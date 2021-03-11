@@ -7,7 +7,14 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 let Person;
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const personSchema = new mongoose.Schema({
+    name: {type:String, required: true},
+    age: String,
+    favoriteFood: Array
+  })
+
+  person = mongoose.model("person", personSchema)
+  done(null ,person);
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
